@@ -1,6 +1,6 @@
 ﻿namespace ArdalisRating
 {
-    public class LandPolicyRater
+    public class LandPolicyRater: Rater
     {
         private readonly RatingEngine _ratingEngine;
         private readonly Logger _logger;

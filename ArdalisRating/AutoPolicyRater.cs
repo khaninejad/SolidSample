@@ -2,7 +2,7 @@
 
 namespace ArdalisRating
 {
-    public class AutoPolicyRater
+    public class AutoPolicyRater: Rater
     {
         private readonly RatingEngine _ratingEngine;
         private readonly Logger _logger;

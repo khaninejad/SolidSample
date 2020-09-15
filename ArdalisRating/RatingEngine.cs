@@ -14,13 +14,20 @@ namespace ArdalisRating
         }
     }
 
+    public abstract class Rater
+    {
+
+    }
+
     /// <summary>
     /// The RatingEngine reads the policy application details from a file and produces a numeric 
     /// rating value based on the details.
     /// </summary>
     public class RatingEngine
     {
-   
+        private readonly RaterBuilder _raterBuilder;
+
+
 
         public decimal Rating { get; set; }
         public Logger Logger { get; set; } = new Logger();
@@ -36,27 +43,8 @@ namespace ArdalisRating
             var policy = JsonConvert.DeserializeObject<Policy>(policyJson,
                 new StringEnumConverter());
 
-            switch (policy.Type)
-            {
-                case PolicyType.Auto:
-                    AutoPolicyRater autoPolicyRater =new AutoPolicyRater(this,this.Logger);
-                    autoPolicyRater.Rate(policy);
-                    break;
-
-                case PolicyType.Land:
-                    LandPolicyRater landPolicyRater = new LandPolicyRater(this,this.Logger);
-                    landPolicyRater.Rate(policy);
-                    break;
-
-                case PolicyType.Life:
-                    LifePolicyRater lifePolicyRater = new LifePolicyRater(this,this.Logger);
-                    lifePolicyRater.Rate(policy);
-                    break;
-
-                default:
-                    Logger.Log("Unknown policy type");
-                    break;
-            }
+            RaterBuilder builder = new RaterBuilder();
+            builder.Create(policy, this);
 
             Logger.Log("Rating completed.");
             Logger.Log("Rating completed.");
