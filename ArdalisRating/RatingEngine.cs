@@ -14,11 +14,6 @@ namespace ArdalisRating
         }
     }
 
-    public abstract class Rater
-    {
-
-    }
-
     /// <summary>
     /// The RatingEngine reads the policy application details from a file and produces a numeric 
     /// rating value based on the details.
@@ -44,7 +39,7 @@ namespace ArdalisRating
                 new StringEnumConverter());
 
             RaterBuilder builder = new RaterBuilder();
-            builder.Create(policy, this);
+         var rating =  builder.Create(policy, this);
 
             Logger.Log("Rating completed.");
             Logger.Log("Rating completed.");

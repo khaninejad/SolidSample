@@ -4,16 +4,14 @@ namespace ArdalisRating
 {
     public class LifePolicyRater: Rater
     {
-        private readonly RatingEngine _ratingEngine;
-        private readonly Logger _logger;
 
-        public LifePolicyRater(RatingEngine ratingEngine, Logger logger)
+
+        public LifePolicyRater(RatingEngine ratingEngine, Logger logger):base(ratingEngine,logger)
         {
-            _ratingEngine = ratingEngine;
-            _logger = logger;
+
         }
 
-        public void Rate(Policy policy)
+        public override void Rate(Policy policy)
         {
             _logger.Log("Rating LIFE policy...");
             _logger.Log("Validating policy.");
@@ -46,11 +44,11 @@ namespace ArdalisRating
             decimal baseRate = policy.Amount * age / 200;
             if (policy.IsSmoker)
             {
-                _ratingEngine.Rating = baseRate * 2;
+                _engine.Rating = baseRate * 2;
                 return;
             }
 
-            _ratingEngine.Rating = baseRate;
+            _engine.Rating = baseRate;
             return;
         }
     }
