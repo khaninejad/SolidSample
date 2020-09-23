@@ -5,6 +5,7 @@
          public FloodPolicyRater(RatingEngine engine, Logger logger)
                : base(engine, logger)
         {
+
         }
 
         public override void Rate(Policy policy)

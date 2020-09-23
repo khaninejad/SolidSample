@@ -39,8 +39,8 @@ namespace ArdalisRating
                 new StringEnumConverter());
 
             RaterBuilder builder = new RaterBuilder();
-         var rating =  builder.Create(policy, this);
-
+            var rating = builder.Create(policy, this);
+            rating.Rate(policy);
             Logger.Log("Rating completed.");
             Logger.Log("Rating completed.");
         }
